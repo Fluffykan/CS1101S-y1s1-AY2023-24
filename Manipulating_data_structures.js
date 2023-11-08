@@ -44,8 +44,3 @@ function map_tree(tr, f) {
                     ? f(x)
                     : map_tree(x, f), tr);
 }
-
-
-//display_list(scale_tree(treeC, x => x * 1));
-
-count_data_items(treeC);
