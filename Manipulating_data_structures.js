@@ -233,8 +233,47 @@ function merge_sort_array(A) {
     
 // }
 
+function stream_refs(strm, n) {
+    if (n === 0) {
+        return head(strm);
+    } else {
+        return stream_refs(tail(strm)(), n - 1);
+    }
+}
 
+function enum_streams(start, end) {
+    return start > end
+            ? "error, start > end"
+            : start === end 
+                ? pair(start, () => null)
+                : pair(start, () => enum_streams(start + 1, end));
+}
 
+function stream_maps(strm, f) {
+    return pair(f(head(strm)), () => stream_maps(tail(strm)(), f));
+}
 
+function stream_filters(strm, pred) {
+    if (is_null(strm)) {
+        return null;
+    } else {
+        pred(head(strm)) 
+            ? pair(head(strm), () => stream_filters(tail(strm)(), pred))
+            : stream_filters(tail(strm)(), pred);
+    }
+}
+
+function display_first_n_stream(strm, n) {
+    let ptr = strm;
+    while (n > 0) {
+        display(head(strm));
+        strm = tail(strm)();
+        n = n - 1;
+    }
+}
+
+const a = enum_streams(0, 4);
+
+stream_filters(a, x => x % 2 === 0);
 
 
