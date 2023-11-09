@@ -131,54 +131,53 @@ function merge_sort(lst) {
     }
 }
 
-function merge(array, low, mid, high) {
-    const result = [];
-    let i = 0;
-    let l = low;
-    let m = mid;
-    display(a);
-    display(l);
-    display(m);
-    while (l < m && m < high) {
-        if (array[low] < array[mid]) {
-            display("if");
-            result[i] = array[low];
-            low = low + 1;
-        } else {
-            result[i] = array[mid];
-            mid = mid + 1;
+
+function merge_sort_array(A) {
+    
+    function merge_sort_helper(A, low, high) {
+        if (low < high) {
+            const mid = math_floor((low + high) / 2);
+            merge_sort_helper(A, low, mid);
+            merge_sort_helper(A, mid + 1, high);
+            merge(A, low, mid, high);
         }
     }
-    return result;
-}
-
-const a = [1,3,2,4];
-const mid = math_floor(array_length(a) / 2) + 1;
-merge(a, 0, mid, 3);
-
-// function _merge_sort_array(arr) {
-//     if (arr[0] === undefined) {
-//         return arr;
-//     } else {
-//         function merge(array, low, mid, high) {
-//             const result = [];
-//             let i = 0;
-//             while (i <= high) {
-//                 if (array[low] < array[mid]) {
-//                     result[i] = array[low];
-//                     low = low + 1;
-//                 } else {
-//                     result[i] = array[mid]
-//                     mid = mid + 1;
-//                 }
-//             }
-//             return result;
-//         }
+    
+    function merge(A, low, mid, high) {
+        const B = [];
+        let left = low;
+        let right = mid + 1;
+        let Bidx = 0;
         
-//         const mid = math_floor(array_length(arr) / 2);
-//         return merge(arr, 0, )
-//     }
-// }
+        while (left <= mid && right <= high) {
+            if (A[left] <= A[right]) {
+                B[Bidx] = A[left];
+                left = left + 1;
+            } else {
+                B[Bidx] = A[right];
+                right = right + 1;
+            }
+            Bidx = Bidx + 1;
+        }
+        
+        while (left <= mid) {
+            B[Bidx] = A[left];
+            Bidx = Bidx + 1;
+            left = left + 1;
+        }   
+        while (right <= high) {
+            B[Bidx] = A[right];
+            Bidx = Bidx + 1;
+            right = right + 1;
+        }
+        
+        for (let k = 0; k < high - low + 1; k = k + 1) {
+            A[low + k] = B[k];
+        }
+    }
+        
+    merge_sort_helper(A, 0, array_length(A) - 1);
+}
 
 
 // function flatten_bst(bst) {
