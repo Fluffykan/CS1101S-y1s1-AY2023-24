@@ -123,7 +123,38 @@ function merge_sort(lst) {
             }
         }
         
-merge_sort(list(1,3,2,5,4));
+function binary_search_tree_to_string(bst) {
+    const div = "; ";
+    if(is_empty_tree(bst)) {
+        return "";
+    } else {
+        const right = right_branch(bst);
+        const left = left_branch(bst);
+        const value = head(bst);
+        if (is_tree(right) && is_tree(left)) {
+            const r = binary_search_tree_to_string(right);
+            const l = binary_search_tree_to_string(left);
+            return l + value + div + r;
+        } else if (is_tree(right) && !is_tree(left)) {
+            const r = binary_search_tree_to_string(right);
+            // display("right tree");
+            // display(value);
+            // display(r);
+            // display("end");
+            return value + div + r;
+        } else if (!is_tree(right) && is_tree(left)) {
+            const l = binary_search_tree_to_string(left);
+            // display("left tree");
+            // display(value);
+            // display(l);
+            // display("end");
+            return l + value + div;
+        } else {
+            display("error");
+            return 1;
+        }
+    }
+}
 
 
 
