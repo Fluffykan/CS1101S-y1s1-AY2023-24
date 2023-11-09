@@ -157,6 +157,24 @@ function flatten_bst(bst) {
 }
 
 
+function insert_to_bst(bst, item) {
+    // your answer here
+    if (is_null(bst)) {
+        return make_tree(item, null, null);
+    } else {
+        const right = right_branch(bst);
+        const left = left_branch(bst);
+        const value = entry(bst);
+        
+        if (item > value) {
+            return make_tree(value, left, insert_to_bst_to_bst(right, item));
+        } else {
+            // item < head(bst)
+            return make_tree(value, insert_to_bst_to_bst(left, item), right);
+        }
+    }
+    
+}
 
 
 
