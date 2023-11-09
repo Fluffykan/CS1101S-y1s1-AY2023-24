@@ -269,7 +269,7 @@ function replace_stream_element(strm, old, niw) {
     } else {
         return head(strm) === old   
             ? pair(niw, () => replace_stream_element(tail(strm)(), old, niw))
-            ; pair(head(strm), () => replace_stream_element(tail(strm)(), old, niw));
+            : pair(head(strm), () => replace_stream_element(tail(strm)(), old, niw));
     }
 }
 
@@ -292,7 +292,7 @@ function display_first_n_stream(strm, n) {
 
 const a = enum_streams(0, 4);
 
-display_list(stream_to_list(a));
+display_list(stream_to_list(replace_stream_element(a, 1, 10)));
 
 
 
