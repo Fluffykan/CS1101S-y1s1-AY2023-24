@@ -263,6 +263,16 @@ function stream_filters(strm, pred) {
     }
 }
 
+function replace_stream_element(strm, old, niw) {
+    if (is_null(strm)) {
+        return null;
+    } else {
+        return head(strm) === old   
+            ? pair(niw, () => replace_stream_element(tail(strm)(), old, niw))
+            ; pair(head(strm), () => replace_stream_element(tail(strm)(), old, niw));
+    }
+}
+
 function stream_to_list(strm) {
     if (is_null(strm)) {
         return null;
