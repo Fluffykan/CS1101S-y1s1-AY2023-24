@@ -131,6 +131,55 @@ function merge_sort(lst) {
     }
 }
 
+function merge(array, low, mid, high) {
+    const result = [];
+    let i = 0;
+    let l = low;
+    let m = mid;
+    display(a);
+    display(l);
+    display(m);
+    while (l < m && m < high) {
+        if (array[low] < array[mid]) {
+            display("if");
+            result[i] = array[low];
+            low = low + 1;
+        } else {
+            result[i] = array[mid];
+            mid = mid + 1;
+        }
+    }
+    return result;
+}
+
+const a = [1,3,2,4];
+const mid = math_floor(array_length(a) / 2) + 1;
+merge(a, 0, mid, 3);
+
+// function _merge_sort_array(arr) {
+//     if (arr[0] === undefined) {
+//         return arr;
+//     } else {
+//         function merge(array, low, mid, high) {
+//             const result = [];
+//             let i = 0;
+//             while (i <= high) {
+//                 if (array[low] < array[mid]) {
+//                     result[i] = array[low];
+//                     low = low + 1;
+//                 } else {
+//                     result[i] = array[mid]
+//                     mid = mid + 1;
+//                 }
+//             }
+//             return result;
+//         }
+        
+//         const mid = math_floor(array_length(arr) / 2);
+//         return merge(arr, 0, )
+//     }
+// }
+
 
 // function flatten_bst(bst) {
 //     const div = "; ";
