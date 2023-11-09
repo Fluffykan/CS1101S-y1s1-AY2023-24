@@ -263,6 +263,14 @@ function stream_filters(strm, pred) {
     }
 }
 
+function stream_to_list(strm) {
+    if (is_null(strm)) {
+        return null;
+    } else {
+        return pair(head(strm), stream_to_list(tail(strm)()));
+    }
+}
+
 function display_first_n_stream(strm, n) {
     let ptr = strm;
     while (n > 0) {
@@ -274,7 +282,7 @@ function display_first_n_stream(strm, n) {
 
 const a = enum_streams(0, 4);
 
-stream_filters(a, x => x % 2 === 0);
+display_list(stream_to_list(a));
 
 
 
