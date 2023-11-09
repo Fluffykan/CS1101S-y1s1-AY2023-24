@@ -122,51 +122,11 @@ function merge_sort(lst) {
                 return drop(tail(lst), x - 1);
             }
         }
+        
+merge_sort(list(1,3,2,5,4));
 
 
-function binary_search_tree_to_string(bst) {
-    const div = "; ";
-    if(is_empty_tree(bst)) {
-        return "";
-    } else {
-        const ri = right_branch(bst);
-        const li = left_branch(bst);
-        if (is_tree(ri) && is_tree(li)) {
-            const h = head(bst);
-            const r = binary_search_tree_to_string(r);
-            const l = binary_search_tree_to_string(l);
-            return h < r 
-                    ? r < l 
-                        ? h + div + r + div + l
-                        : h + div + l + div + r
-                    : h < l 
-                        ? r + div + h + div + l
-                        : r + div + l + div + h;
-        } else if (is_tree(ri) && !is_tree(li)) {
-            const h = head(bst);
-            const r = binary_search_tree_to_string(l);
-            return h < r ? h + div + r : r + div + h;
-        } else if (!is_tree(ri) && is_tree(li)) {
-            const h = head(bst);
-            const l = binary_search_tree_to_string(l);
-            return h < l ? h + div + l : l + div + h;
-        } else {
-            display("error");
-            return 1;
-        }
-    }
-}
 
-const h = make_tree("h", make_empty_tree(), make_empty_tree());
-const a = make_tree("a", make_empty_tree(), make_empty_tree());
-const n = make_tree("n", h, make_empty_tree());
-const c = make_tree("c", a, make_empty_tree());
-const test_bst = make_tree("e", c, n);
-
-// Test
-
- binary_search_tree_to_string(test_bst);
-// binary_search_tree_to_string(cadet_names);
 
 
 
