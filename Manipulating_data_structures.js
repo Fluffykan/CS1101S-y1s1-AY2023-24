@@ -257,9 +257,9 @@ function stream_filters(strm, pred) {
     if (is_null(strm)) {
         return null;
     } else {
-        pred(head(strm)) 
-            ? pair(head(strm), () => stream_filters(tail(strm)(), pred))
-            : stream_filters(tail(strm)(), pred);
+        return pred(head(strm)) 
+                ? pair(head(strm), () => stream_filters(tail(strm)(), pred))
+                : stream_filters(tail(strm)(), pred);
     }
 }
 
@@ -275,5 +275,6 @@ function display_first_n_stream(strm, n) {
 const a = enum_streams(0, 4);
 
 stream_filters(a, x => x % 2 === 0);
+
 
 
