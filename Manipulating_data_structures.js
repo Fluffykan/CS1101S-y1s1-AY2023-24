@@ -66,6 +66,30 @@ function insertion_sort(lst) {
     }
 }
 
+function insertion_sort_array(arr) {
+    if (arr[0] === undefined) {
+        return arr;
+    } else {
+        let ptr = 0;
+        let trav = 1;
+        let smallest = ptr;
+        let temp = undefined;
+        while (arr[ptr] !== undefined) {
+            smallest = ptr;
+            while (arr[trav] !== undefined) {
+                arr[trav] < arr[smallest] ? smallest = trav : 0;
+                trav = trav + 1;
+            }
+            temp = arr[smallest];
+            arr[smallest] = arr[ptr]; 
+            arr[ptr] = temp;
+            ptr = ptr + 1;
+            trav = ptr + 1;
+        }
+        return arr;
+    }
+}
+
 
 function merge_sort(lst) {
     if(is_null(lst) || is_null(tail(lst))) {
@@ -107,74 +131,60 @@ function merge_sort(lst) {
     }
 }
 
-        function take(lst, x) {
-            if (x === 0) {
-                return null;
-            } else {
-                return pair(head(lst), take(tail(lst), x - 1));
-            }
-        }
-        
-        function drop(lst, x) {
-            if (x === 0) {
-                return lst;
-            } else {
-                return drop(tail(lst), x - 1);
-            }
-        }
-        
-function flatten_bst(bst) {
-    const div = "; ";
-    if(is_empty_tree(bst)) {
-        return null;
-    } else {
-        const right = right_branch(bst);
-        const left = left_branch(bst);
-        const value = head(bst);
-        if (is_tree(right) && is_tree(left)) {
-            const r = binary_search_tree_to_string(right);
-            const l = binary_search_tree_to_string(left);
-            return append(l, append(list(value), r));
-        } else if (is_tree(right) && !is_tree(left)) {
-            const r = binary_search_tree_to_string(right);
-            // display("right tree");
-            // display(value);
-            // display(r);
-            // display("end");
-            return append(list(value), r);
-        } else if (!is_tree(right) && is_tree(left)) {
-            const l = binary_search_tree_to_string(left);
-            // display("left tree");
-            // display(value);
-            // display(l);
-            // display("end");
-            return append(l, list(value));
-        } else {
-            display("error");
-            return 1;
-        }
-    }
-}
+
+// function flatten_bst(bst) {
+//     const div = "; ";
+//     if(is_empty_tree(bst)) {
+//         return null;
+//     } else {
+//         const right = right_branch(bst);
+//         const left = left_branch(bst);
+//         const value = head(bst);
+//         if (is_tree(right) && is_tree(left)) {
+//             const r = binary_search_tree_to_string(right);
+//             const l = binary_search_tree_to_string(left);
+//             return append(l, append(list(value), r));
+//         } else if (is_tree(right) && !is_tree(left)) {
+//             const r = binary_search_tree_to_string(right);
+//             // display("right tree");
+//             // display(value);
+//             // display(r);
+//             // display("end");
+//             return append(list(value), r);
+//         } else if (!is_tree(right) && is_tree(left)) {
+//             const l = binary_search_tree_to_string(left);
+//             // display("left tree");
+//             // display(value);
+//             // display(l);
+//             // display("end");
+//             return append(l, list(value));
+//         } else {
+//             display("error");
+//             return 1;
+//         }
+//     }
+// }
 
 
-function insert_to_bst(bst, item) {
-    // your answer here
-    if (is_null(bst)) {
-        return make_tree(item, null, null);
-    } else {
-        const right = right_branch(bst);
-        const left = left_branch(bst);
-        const value = entry(bst);
+// function insert_to_bst(bst, item) {
+//     // your answer here
+//     if (is_null(bst)) {
+//         return make_tree(item, null, null);
+//     } else {
+//         const right = right_branch(bst);
+//         const left = left_branch(bst);
+//         const value = entry(bst);
         
-        if (item > value) {
-            return make_tree(value, left, insert_to_bst_to_bst(right, item));
-        } else {
-            // item < head(bst)
-            return make_tree(value, insert_to_bst_to_bst(left, item), right);
-        }
-    }
+//         if (item > value) {
+//             return make_tree(value, left, insert_to_bst_to_bst(right, item));
+//         } else {
+//             // item < head(bst)
+//             return make_tree(value, insert_to_bst_to_bst(left, item), right);
+//         }
+//     }
     
-}
+// }
+
 
 
 
