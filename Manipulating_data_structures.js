@@ -67,9 +67,63 @@ function insertion_sort(lst) {
 }
 
 
+function merge_sort(lst) {
+    if(is_null(lst) || is_null(tail(lst))) {
+        return lst;
+    } else {
+        function take(lst, x) {
+            if (x === 0) {
+                return null;
+            } else {
+                return pair(head(lst), take(tail(lst), x - 1));
+            }
+        }
+        
+        function drop(lst, x) {
+            if (x === 0) {
+                return lst;
+            } else {
+                return drop(tail(lst), x - 1);
+            }
+        }
+        
+        function merge(a, b) {
+            if (is_null(a)) {
+                return b;
+            } else if (is_null(b)) {
+                return a;
+            } else {
+                return head(a) < head(b) 
+                        ? pair(head(a), merge(tail(a), b))
+                        : pair(head(b), merge(a, tail(b)));
+            }
+        }
+        
+        
+        const mid = math_floor(length(lst) / 2);
+        const wish1 = merge_sort(take(lst, mid));
+        const wish2 = merge_sort(drop(lst, mid));
+        return merge(wish1, wish2);
+    }
+}
 
-
-
+        function take(lst, x) {
+            if (x === 0) {
+                return null;
+            } else {
+                return pair(head(lst), take(tail(lst), x - 1));
+            }
+        }
+        
+        function drop(lst, x) {
+            if (x === 0) {
+                return lst;
+            } else {
+                return drop(tail(lst), x - 1);
+            }
+        }
+        
+merge_sort(list(1,3,2,5,4));
 
 
 
