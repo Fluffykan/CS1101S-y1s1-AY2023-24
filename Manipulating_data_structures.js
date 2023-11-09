@@ -1,6 +1,7 @@
 const treeA = list(1, 2, 3, 4);
 const treeB = list(list(1, 2), list(3, 4));
 const treeC = list(list(1, 2), null, 3, list(4, null));
+const rand_lst = list(3,4,1,2);
 
 
 function add_tree(tr) {
@@ -44,3 +45,34 @@ function map_tree(tr, f) {
                     ? f(x)
                     : map_tree(x, f), tr);
 }
+
+function insertion_sort(lst) {
+    function smallest(lst) {
+        let s = Infinity;
+        let l = lst;
+        while(!is_null(l)) {
+            head(l) < s ? s = head(l) : 0;
+            l = tail(l);
+        }
+        return s;
+    }
+    
+    if (is_null(lst)) {
+        return null;
+    } else {
+        const s = smallest(lst);
+        display(s);
+        return pair(s, insertion_sort(remove(s, lst)));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
