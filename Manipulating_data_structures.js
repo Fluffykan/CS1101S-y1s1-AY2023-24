@@ -281,6 +281,17 @@ function stream_to_list(strm) {
     }
 }
 
+function add_streamss(a, b) {
+    if (is_null(a)) {
+        return b;
+    } else if (is_null(b)) {
+        return a;
+    } else {
+        return pair(head(a) + head(b), () => add_streamss(tail(a)(), tail(b)()));
+    }
+}
+
+
 function display_first_n_stream(strm, n) {
     let ptr = strm;
     while (n > 0) {
@@ -291,8 +302,9 @@ function display_first_n_stream(strm, n) {
 }
 
 const a = enum_streams(0, 4);
+const b = pair(1, () => b);
 
-display_list(stream_to_list(replace_stream_element(a, 1, 10)));
+display_first_n_stream(add_streamss(a, b), 10);
 
 
 
