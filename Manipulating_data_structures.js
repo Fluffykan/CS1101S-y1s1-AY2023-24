@@ -295,16 +295,49 @@ function add_streamss(a, b) {
 function display_first_n_stream(strm, n) {
     let ptr = strm;
     while (n > 0) {
+        if (is_null(ptr)) {
+            break;
+        }
         display(head(strm));
         strm = tail(strm)();
         n = n - 1;
     }
 }
 
-const a = enum_streams(0, 4);
-const b = pair(1, () => b);
+function zip_streams(a, b) {
+    if (is_null(a)) {
+        return b;
+    }
+    
+    if (is_null(b)) {
+        return a;
+    }
+    
+    const v1 = head(a);
+    const v2 = head(b);
+    
+    return pair(v1, () => pair(v2, () => zip_streams(tail(a)(), tail(b)())));
+    
+}
 
-display_first_n_stream(add_streamss(a, b), 10);
+function skip_every_other_stream_element(s) {
+    // bin == 0 skip
+    // bin == 1 take
+    function helper(s, bin) {
+        if (is_null(s)) {
+            return null;
+        }
+        
+        if (bin === 0) {
+            return helper(tail(s)(), 1);
+        }
+        
+        return pair(head(s), () => helper(tail(s)(), 0));
+    }
+    return helper(s, 1);
+}
 
+const ones = pair(1, () => ones);
+const twos = pair(2, () => twos);
 
-
+display_first_n_stream(every_other_stream_element(zip_streams(ones, twos)), 3);
