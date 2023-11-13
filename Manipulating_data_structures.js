@@ -337,6 +337,60 @@ function skip_every_other_stream_element(s) {
     return helper(s, 1);
 }
 
+function n_of_n_stream() {
+    // YOUR SOLUTION HERE
+    function helper(curr, n) {
+        if (n === curr) {
+            return pair(curr, () => helper(curr + 1, 1));
+        } else {
+            return pair(curr, () => helper(curr, n + 1));
+        }
+    }
+    return helper(1, 1);
+}
+
+function first_n_elem_of_stream(s, k) {
+    // YOUR SOLUTION HERE
+    if (is_null(s)) {
+        return s;
+    } else if (k === 0) {
+        return null;
+    }
+    
+    return pair(head(s), ()=> shorten_stream(tail(s)(), k - 1));
+}
+
+function make_alternating_stream(s) {
+
+    // YOUR SOLUTION HERE
+    if(is_null(s)) {
+        return null;
+    } 
+    
+    const v1 = head(s);
+
+    if(is_null(tail(s)())) {
+        return pair(v1, () => null);
+    }
+    
+    const v2 = -1 * head(tail(s)());
+    return pair(v1, () => pair(v2, () => make_alternating_stream(tail(tail(s)())())));
+
+}
+
+function partial_sums(s) {
+
+    // YOUR SOLUTION HERE
+    function helper(s, sum) {
+        if (is_null(s)) {
+            return null;
+        }
+        
+        return pair(sum + head(s), () => helper(tail(s)(), sum + head(s)));
+    }
+    
+    return helper(s, 0);
+}
 const ones = pair(1, () => ones);
 const twos = pair(2, () => twos);
 
